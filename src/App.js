@@ -4,9 +4,14 @@ import Detail from './pages/detail';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 function App() {
   return (
-    <>
-    <div>HOLA EN REACT</div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />}/>
+          <Route path='/:slug' component={<Detail />}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
