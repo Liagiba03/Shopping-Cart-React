@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import iconCart from '../assets/images/iconCart.png'
 
 const ProductCart = (props) => {
   const {id, name, price, image, slug} = props.data;
@@ -15,7 +16,7 @@ const ProductCart = (props) => {
           $<span className='text-2xl font-medium'>{price}</span>
         </p>
         <button className='bg-gray-300 p-2 rounded-md text-sm hover:bg-gray-400 flex gap-2'>
-          <img src='../assets/images/iconCart.png' className='w-5'/>
+          <img src={iconCart} className='w-5'/>
           Add to Cart
         </button>
       </div>
