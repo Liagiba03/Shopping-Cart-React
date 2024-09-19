@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { products } from '../components/products';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/cart';
 
 const Detail = () => {
   const {slug} = useParams();
   const [detail, setDetail] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const findDetail = products.filter(product => product.slug === slug);
@@ -23,7 +26,15 @@ const Detail = () => {
   //Function plus quantity
   const handlePlusQuantity = () =>{
     setQuantity(quantity + 1)
-}
+  }
+  //Function add product to the cart
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      productId: detail.id,
+      quantity: quantity
+    }))
+  }
+
   return (
     <div>
       <h2 className='text-3xl text-center'>PRODUCT DETAIL</h2>
@@ -42,7 +53,7 @@ const Detail = () => {
               <span className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item'>{quantity}</span>
               <button className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item' onClick={handlePlusQuantity}>+</button>
             </div>
-            <button className='bg-slate-900 text-white px-7 py-3 rounded-xl shadow-2xl'>
+            <button className='bg-slate-900 text-white px-7 py-3 rounded-xl shadow-2xl' onClick={handleAddToCart}>
               Add to Cart
             </button>
           </div>
