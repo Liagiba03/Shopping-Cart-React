@@ -5,6 +5,7 @@ import { products } from '../components/products';
 const Detail = () => {
   const {slug} = useParams();
   const [detail, setDetail] = useState([]);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const findDetail = products.filter(product => product.slug === slug);
@@ -15,6 +16,14 @@ const Detail = () => {
     }
   }, [slug])
 
+  //Function minus quantity
+  const handleMinusQuantity = () =>{
+    setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+  }
+  //Function plus quantity
+  const handlePlusQuantity = () =>{
+    setQuantity(quantity + 1)
+}
   return (
     <div>
       <h2 className='text-3xl text-center'>PRODUCT DETAIL</h2>
@@ -29,14 +38,17 @@ const Detail = () => {
           </p>
           <div className='flex gap-5'>
             <div className='flex gap-2 justify-center items-center'>
-              <button className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item'>+</button>
-              <span className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item'>1</span>
-              <button className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item'>-</button>
+              <button className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item' onClick={handleMinusQuantity}>-</button>
+              <span className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item'>{quantity}</span>
+              <button className='bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center item' onClick={handlePlusQuantity}>+</button>
             </div>
             <button className='bg-slate-900 text-white px-7 py-3 rounded-xl shadow-2xl'>
               Add to Cart
             </button>
           </div>
+          <p>
+            {detail.description}
+          </p>
         </div>
       </div>
     </div>
