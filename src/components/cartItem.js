@@ -11,8 +11,8 @@ const CartItem = (props) => {
   //console.log(detail)
   return (
     <div className='flex justify-between items-center bg-slate-600 text-white p-2 border-b-2 border-slate-700 gap-5 rounded-md'>
-     
-
+      <img src={detail.image} className='w-12'></img>
+      <h3>{detail.name}</h3>
     </div>
   )
 }
