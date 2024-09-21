@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { products } from './products';
+import { useDispatch } from 'react-redux';
+import { changeQuantity } from '../store/cart';
 
 const CartItem = (props) => {
   const {productId, quantity} = props.data;
   const [detail, setDetail] = useState([]);
+  const dispatch = useDispatch();
   useEffect(()=> {
     const findDetail = products.filter(product => product.id === productId)[0];
     setDetail(findDetail);
